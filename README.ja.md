@@ -15,7 +15,7 @@
 | `Plugins/MomijiUI/` | UE のプラグイン。モジュールは `MomijiUICore`（画面 JSON の読み込み・配置・検査。エンジン非依存）と `MomijiUISlate`（Slate の描画）の 2 つ。書体・照合の見本（`Fixtures/`）・最小の見本（`Plugins/MomijiUI/Examples/counter.json`）・自動試験のソースも入っています |
 | `Tools/momiji-ui/` | ブラウザ版。源 `web/src/momiji-ui.mjs`・配布物を作る `web/build.mjs`・画面 JSON の検査 `validate.mjs`・見本 `examples/`・照合の道具（`package.json` と lock） |
 | `Scripts/lib/momiji-ui-canvas.js` | `<script>` で読む形のブラウザ版（`web/build.mjs` が源から作る生成物） |
-| `Plugins/MomijiUI/Docs/` | 説明書。導入ガイド `momiji-ui-guide.md`（見本を動かす・画面 JSON を書く・UE とブラウザで使う・違い・つまずき）とリファレンス `momiji-ui-reference.md`（部品・鍵・列挙・動き・テーマ・診断の全部）の日英と、更新履歴 `momiji-ui-changelog.md`。Fab の zip の `Docs/` と同じもの |
+| `Plugins/MomijiUI/Docs/` | 説明書。導入ガイド `momiji-ui-guide.ja.md`（見本を動かす・画面 JSON を書く・UE とブラウザで使う・違い・つまずき）とリファレンス `momiji-ui-reference.ja.md`（部品・鍵・列挙・動き・テーマ・診断の全部）の日英と、更新履歴 `momiji-ui-changelog.md`。Fab の zip の `Docs/` と同じもの |
 
 ## 入れ方
 
@@ -39,7 +39,7 @@ node Tools/momiji-ui/examples/serve.mjs   # → http://localhost:8840/counter/ �
 node Tools/momiji-ui/validate.mjs Plugins/MomijiUI/Examples/counter.json
 ```
 
-詳しくは導入ガイド [Plugins/MomijiUI/Docs/momiji-ui-guide.md](Plugins/MomijiUI/Docs/momiji-ui-guide.md) と、全部の部品と鍵を引けるリファレンス [Plugins/MomijiUI/Docs/momiji-ui-reference.md](Plugins/MomijiUI/Docs/momiji-ui-reference.md)（ガイドの §1 は Fab で入れた人の手順です）。
+詳しくは導入ガイド [Plugins/MomijiUI/Docs/momiji-ui-guide.ja.md](Plugins/MomijiUI/Docs/momiji-ui-guide.ja.md) と、全部の部品と鍵を引けるリファレンス [Plugins/MomijiUI/Docs/momiji-ui-reference.ja.md](Plugins/MomijiUI/Docs/momiji-ui-reference.ja.md)（ガイドの §1 は Fab で入れた人の手順です）。
 
 ## 試験
 

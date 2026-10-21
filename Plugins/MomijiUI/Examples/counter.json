@@ -1,6 +1,6 @@
 {
  "id": "counter",
- "note": "「+1」はまだ押していない間だけ脈動する（anim.pulse の whileIf）。MomijiUI の導入ガイド（momiji-ui-guide.md の 1.4・1.5）の見本。押した回数・名前の一覧・条件で出る文。UE は SMomijiUICounterExample（-KaedeUiExample=counter）、ブラウザはブラウザ版の examples/counter（説明書の Web の見本も同じ）が同じ JSON を使う。host が渡す値: vars.count（数）・strings.title・lists.names（{kind: name|empty, text}）。action: count:add / count:reset / name:add",
+ "note": "「+1」はまだ押していない間だけ脈動する（anim.pulse の whileIf）。MomijiUI の導入ガイド（momiji-ui-guide.ja.md の 1.4・1.5）の見本。押した回数・名前の一覧・条件で出る文。UE は SMomijiUICounterExample（-KaedeUiExample=counter）、ブラウザはブラウザ版の examples/counter（説明書の Web の見本も同じ）が同じ JSON を使う。host が渡す値: vars.count（数）・strings.title・lists.names（{kind: name|empty, text}）。action: count:add / count:reset / name:add",
  "root": {
   "type": "Panel", "x": 0, "y": 0, "w": 1280, "h": 720, "variant": "spacer",
   "children": [

@@ -15,7 +15,7 @@ Japanese: [README.ja.md](README.ja.md). **The Japanese version is the original**
 | `Plugins/MomijiUI/` | The UE plugin. Two modules: `MomijiUICore` (loads, lays out and validates screen JSON; engine-agnostic) and `MomijiUISlate` (Slate rendering). Also the fonts, the conformance fixtures (`Fixtures/`), the minimal example (`Plugins/MomijiUI/Examples/counter.json`) and the automated test sources |
 | `Tools/momiji-ui/` | The browser version: the source `web/src/momiji-ui.mjs`, `web/build.mjs` that makes the distribution, the screen JSON checker `validate.mjs`, examples in `examples/`, and the conformance tooling (`package.json` and lock) |
 | `Scripts/lib/momiji-ui-canvas.js` | The browser version for a classic `<script>` tag (generated from the source by `web/build.mjs`) |
-| `Plugins/MomijiUI/Docs/` | Documentation: the setup guide `momiji-ui-guide.en.md` (running the sample, writing screen JSON, using it in UE and the browser, differences, troubleshooting) and the reference `momiji-ui-reference.en.md` (every node type, key, enumeration, animation, theme and diagnostic), in English and Japanese, plus the changelog `momiji-ui-changelog.md`. The same files as `Docs/` in the Fab download |
+| `Plugins/MomijiUI/Docs/` | Documentation: the setup guide `momiji-ui-guide.md` (running the sample, writing screen JSON, using it in UE and the browser, differences, troubleshooting) and the reference `momiji-ui-reference.md` (every node type, key, enumeration, animation, theme and diagnostic), in English and Japanese, plus the changelog `momiji-ui-changelog.md`. The same files as `Docs/` in the Fab download |
 
 ## Installation
 
@@ -39,7 +39,7 @@ To check that a screen JSON follows the rules:
 node Tools/momiji-ui/validate.mjs Plugins/MomijiUI/Examples/counter.json
 ```
 
-Details: the setup guide [Plugins/MomijiUI/Docs/momiji-ui-guide.en.md](Plugins/MomijiUI/Docs/momiji-ui-guide.en.md) and the reference with every node type and key [Plugins/MomijiUI/Docs/momiji-ui-reference.en.md](Plugins/MomijiUI/Docs/momiji-ui-reference.en.md) (§1 of the guide is written for a Fab install).
+Details: the setup guide [Plugins/MomijiUI/Docs/momiji-ui-guide.md](Plugins/MomijiUI/Docs/momiji-ui-guide.md) and the reference with every node type and key [Plugins/MomijiUI/Docs/momiji-ui-reference.md](Plugins/MomijiUI/Docs/momiji-ui-reference.md) (§1 of the guide is written for a Fab install).
 
 ## Tests
 

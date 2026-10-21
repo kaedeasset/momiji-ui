@@ -70,7 +70,7 @@ MomijiUI ${version}（UE のプラグインと同じ番号）。
 使い方（4 つの仕事）は \`examples/counter/main.js\` の順に: 画面 JSON を読む（\`MomijiUICanvas.load\`）→ 状態から値を作って描く（\`present\`）→ 押された action で状態を変える（\`attach\` の \`onEvent\`）→ 描き直す。
 入力（ポインタ・ホイール・方向キーと Enter・文字欄の <input>・窓に合わせる \`fit\`）は \`attach\` が受け持ちます。終わるときは \`host.dispose()\`。
 
-説明書は MomijiUI の導入ガイドとリファレンス（日本語と英語）です。UE のプラグインの \`Docs/\`（\`momiji-ui-guide.md\`・\`momiji-ui-reference.md\`）にあります。GitHub のリポジトリは準備中です。
+説明書は MomijiUI の導入ガイドとリファレンス（日本語と英語）です。UE のプラグインの \`Docs/\`（\`momiji-ui-guide.ja.md\`・\`momiji-ui-reference.ja.md\`）にあります。GitHub のリポジトリは準備中です。
 `;
 
 function build(check) {
