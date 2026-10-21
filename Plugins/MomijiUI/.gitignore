@@ -1,0 +1,59 @@
+# ===================================================================
+# MomijiUI — 公開リポ用 .gitignore
+# 方針: 自分たちのコードだけをコミットする。
+#       UE 生成物と、再配布不可になりうるバイナリアセットは既定で除外。
+# ===================================================================
+
+# ---- UE 生成物・大容量（追跡しない） ----
+Binaries/
+Build/
+DerivedDataCache/
+Intermediate/
+Saved/
+.vs/
+
+# ---- UE / VS 生成ファイル ----
+*.VC.db
+*.VC.opendb
+*.opensdf
+*.opendb
+*.sdf
+*.sln
+*.suo
+*.xcodeproj
+*.xcworkspace
+
+# ---- OS ----
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# ===================================================================
+# 安全装置: バイナリアセットは既定で「全部無視」する。
+# MetaHuman 等の再配布不可アセットを誤って公開リポへ入れない保険。
+# 配布してよい検証済みサンプルだけ、下の許可リストで明示的に戻す。
+# ===================================================================
+*.uasset
+*.umap
+*.fbx
+*.obj
+*.ma
+*.mb
+*.psd
+*.tga
+*.wav
+*.mp3
+*.ogg
+
+# ---- 許可リスト: 再配布OKと確認済みのサンプルのみ追跡する ----
+# 例) Content/Sample/ 配下の自作 or CC0 素材だけを戻す。
+# !Content/Sample/
+# !Content/Sample/**/*.uasset
+# !Content/Sample/**/*.umap
+# !Content/Sample/**/*.png
+# RPG 制作ツールの見本の作品（素材は Scripts/rpg-sample-build.py が描いた・鳴らした自作）
+!Resources/Rpg/Samples/**/*.ogg
+!Resources/Rpg/Samples/**/*.wav
+
+# ---- Claude ローカル設定 ----
+.claude/settings.local.json

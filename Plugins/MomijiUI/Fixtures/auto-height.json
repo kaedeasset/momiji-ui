@@ -1,0 +1,87 @@
+{
+ "id": "auto-height",
+ "note": "VerticalLayout の中の、高さの無い入れ物の子（VerticalLayout・HorizontalLayout）は、測った高さで地と当たりを持つ（§5.1・2026-10-12）",
+ "root": {
+  "type": "Panel",
+  "x": 0,
+  "y": 0,
+  "w": 1280,
+  "h": 720,
+  "variant": "spacer",
+  "children": [
+   {
+    "type": "VerticalLayout",
+    "x": 40,
+    "y": 40,
+    "w": 600,
+    "h": 640,
+    "pad": 12,
+    "gap": 10,
+    "children": [
+     {
+      "type": "VerticalLayout",
+      "variant": "dark",
+      "action": "t:box",
+      "pad": 20,
+      "gap": 8,
+      "children": [
+       {
+        "type": "Button",
+        "text": "a",
+        "action": "t:a",
+        "h": 40
+       }
+      ]
+     },
+     {
+      "type": "HorizontalLayout",
+      "variant": "light",
+      "action": "t:row",
+      "pad": 10,
+      "gap": 8,
+      "children": [
+       {
+        "type": "Button",
+        "text": "b",
+        "action": "t:b",
+        "w": 120,
+        "h": 36
+       }
+      ]
+     },
+     {
+      "type": "Button",
+      "text": "c",
+      "action": "t:c",
+      "h": 30
+     }
+    ]
+   }
+  ]
+ },
+ "scenarios": [
+  {
+   "name": "auto-height",
+   "steps": [
+    {
+     "hit": [
+      60,
+      125
+     ],
+     "expect": {
+      "hit": "action:t:box"
+     }
+    },
+    {
+     "hit": [
+      600,
+      170
+     ],
+     "expect": {
+      "hit": "action:t:row"
+     }
+    }
+   ]
+  }
+ ]
+}

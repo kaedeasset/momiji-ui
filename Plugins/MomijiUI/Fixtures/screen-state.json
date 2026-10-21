@@ -1,0 +1,50 @@
+{
+ "id": "screen-state",
+ "note": "画面ごとの状態（仕様 §6「画面の状態」・Codex 10/04/01 F3・AC05/AC06）。同じ id/bindVar/ScrollView の id を持つ画面 A・B を同じ Renderer／Canvas で切り替えても、文字欄の中身・スクロール量・焦点の控えは混ざらない。戻れば A の状態。host が明示的に入れた値（input の手）はその画面のぶん。reset で捨てる。同じ木を A・B の両方として使う（同じ鍵がぶつかる最悪の場合）",
+ "bind": { "vars": { "modal": 0 } },
+ "root": {
+  "type": "Panel", "x": 0, "y": 0, "w": 1280, "h": 720, "variant": "spacer",
+  "children": [
+   { "type": "TextInput", "id": "name", "bindVar": "name", "action": "t:save", "x": 40, "y": 40, "w": 300, "h": 48, "placeholder": "name" },
+   { "type": "ScrollView", "id": "list", "x": 40, "y": 120, "w": 400, "h": 100, "pad": 0, "gap": 10,
+     "children": [
+      { "type": "Button", "id": "r1", "text": "r1", "action": "t:r", "h": 40 },
+      { "type": "Button", "id": "r2", "text": "r2", "action": "t:r", "h": 40 },
+      { "type": "Button", "id": "r3", "text": "r3", "action": "t:r", "h": 40 },
+      { "type": "Button", "id": "r4", "text": "r4", "action": "t:r", "h": 40 },
+      { "type": "Button", "id": "r5", "text": "r5", "action": "t:r", "h": 40 },
+      { "type": "Button", "id": "r6", "text": "r6", "action": "t:r", "h": 40 }
+     ] },
+   { "type": "Modal", "id": "dlg", "text": "確認", "w": 400, "h": 200, "pad": 16, "gap": 10, "showIf": "modal == 1",
+     "children": [ { "type": "Button", "id": "ok", "text": "ok", "action": "t:ok", "h": 40 } ] }
+  ]
+ },
+ "scenarios": [
+  { "name": "isolate", "_note": "AC05 A で編集・スクロール・Modal を開いたまま B へ。B は初期値。A へ戻れば A の状態",
+    "steps": [
+     { "screen": "A", "expect": { "focus": "id:name", "top": 0 } },
+     { "click": [190, 64], "expect": { "active": "name" } },
+     { "type": "A-text", "expect": { "inputs": { "name": "A-text" } } },
+     { "scroll": { "id": "list", "y": 100 }, "expect": { "scroll": { "list": 100 } } },
+     { "bind": { "vars": { "modal": 1 } }, "expect": { "top": 1, "focus": "id:ok", "active": "" } },
+     { "screen": "B", "expect": { "active": "", "inputs": { "name": "" }, "scroll": { "list": 0 }, "top": 1, "focus": "id:ok" } },
+     { "bind": { "vars": { "modal": 0 } }, "expect": { "top": 0, "focus": "id:name", "scroll": { "list": 0 } } },
+     { "type": "zzz", "expect": { "inputs": { "name": "" }, "active": "" } },
+     { "screen": "A", "expect": { "inputs": { "name": "A-text" }, "scroll": { "list": 100 }, "top": 0, "focus": "id:name", "active": "" } }
+    ] },
+  { "name": "explicit-and-reset", "_note": "AC06 host が明示的に入れた値はその画面のぶん。reset で捨てる（いまの画面・別の画面）",
+    "steps": [
+     { "screen": "A" },
+     { "click": [190, 64], "expect": { "active": "name" } },
+     { "type": "A-text" },
+     { "scroll": { "id": "list", "y": 50 }, "expect": { "scroll": { "list": 50 } } },
+     { "screen": "B", "expect": { "inputs": { "name": "" }, "scroll": { "list": 0 } } },
+     { "input": { "id": "name", "value": "shared" }, "expect": { "inputs": { "name": "shared" } } },
+     { "screen": "A", "expect": { "inputs": { "name": "A-text" }, "scroll": { "list": 50 } } },
+     { "reset": "A", "expect": { "inputs": { "name": "" }, "scroll": { "list": 0 }, "active": "" } },
+     { "screen": "B", "expect": { "inputs": { "name": "shared" } } },
+     { "reset": "A" },
+     { "screen": "A", "expect": { "inputs": { "name": "" }, "scroll": { "list": 0 }, "focus": "id:name" } }
+    ] }
+ ]
+}

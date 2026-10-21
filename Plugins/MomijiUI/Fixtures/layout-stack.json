@@ -1,0 +1,145 @@
+{
+ "id": "layout-stack",
+ "note": "VerticalLayout / HorizontalLayout の pad・gap・margin・flex・minW・minH・h 無しの入れ子",
+ "root": {
+  "type": "Panel",
+  "x": 0,
+  "y": 0,
+  "w": 1280,
+  "h": 720,
+  "variant": "spacer",
+  "children": [
+   {
+    "type": "VerticalLayout",
+    "x": 40,
+    "y": 40,
+    "w": 600,
+    "h": 640,
+    "pad": 12,
+    "gap": 10,
+    "children": [
+     {
+      "type": "Button",
+      "text": "v1",
+      "action": "t:v1",
+      "h": 40
+     },
+     {
+      "type": "Button",
+      "text": "v2",
+      "action": "t:v2",
+      "h": 30,
+      "margin": 6
+     },
+     {
+      "type": "HorizontalLayout",
+      "h": 50,
+      "pad": 4,
+      "gap": 8,
+      "children": [
+       {
+        "type": "Button",
+        "text": "h1",
+        "action": "t:h1",
+        "w": 120
+       },
+       {
+        "type": "Button",
+        "text": "h2",
+        "action": "t:h2",
+        "flex": 1
+       },
+       {
+        "type": "Button",
+        "text": "h3",
+        "action": "t:h3",
+        "flex": 2,
+        "minW": 200
+       },
+       {
+        "type": "Button",
+        "text": "h4",
+        "action": "t:h4",
+        "w": 60
+       }
+      ]
+     },
+     {
+      "type": "VerticalLayout",
+      "pad": 6,
+      "gap": 4,
+      "children": [
+       {
+        "type": "Button",
+        "text": "n1",
+        "action": "t:n1",
+        "h": 24
+       },
+       {
+        "type": "Button",
+        "text": "n2",
+        "action": "t:n2",
+        "h": 24
+       }
+      ]
+     },
+     {
+      "type": "Button",
+      "text": "v3",
+      "action": "t:v3",
+      "flex": 1,
+      "minH": 40
+     },
+     {
+      "type": "Button",
+      "text": "v4",
+      "action": "t:v4",
+      "flex": 2
+     },
+     {
+      "type": "Button",
+      "text": "v5",
+      "action": "t:v5",
+      "h": 36
+     }
+    ]
+   },
+   {
+    "type": "HorizontalLayout",
+    "x": 680,
+    "y": 40,
+    "w": 560,
+    "h": 80,
+    "pad": 10,
+    "gap": 12,
+    "children": [
+     {
+      "type": "Button",
+      "text": "r1",
+      "action": "t:r1",
+      "flex": 1
+     },
+     {
+      "type": "Panel",
+      "variant": "spacer",
+      "w": 30,
+      "children": []
+     },
+     {
+      "type": "Button",
+      "text": "r2",
+      "action": "t:r2",
+      "w": 90,
+      "margin": 8
+     },
+     {
+      "type": "Button",
+      "text": "r3",
+      "action": "t:r3",
+      "flex": 1
+     }
+    ]
+   }
+  ]
+ }
+}

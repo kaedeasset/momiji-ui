@@ -1,0 +1,22 @@
+{
+ "id": "visual",
+ "note": "当たりでは測れない描き方の見本（Ellipse・runs のルビ・Image の fit・anim.enter）。当たりは画像の枠だけ。絵は Saved/MomijiUIConformance/visual.web.png",
+ "root": {
+  "type": "Panel", "x": 0, "y": 0, "w": 1280, "h": 720, "variant": "spacer",
+  "children": [
+   { "type": "Image", "action": "t:contain", "x": 40, "y": 40, "w": 360, "h": 300, "fit": "contain", "sprite": "Plugins/MomijiUI/Fixtures/images/landscape.png", "color": "#222a33" },
+   { "type": "Image", "action": "t:cover", "x": 440, "y": 40, "w": 360, "h": 300, "fit": "cover", "sprite": "Plugins/MomijiUI/Fixtures/images/landscape.png" },
+   { "type": "Ellipse", "x": 860, "y": 60, "w": 160, "h": 100, "color": "#5ab0ff" },
+   { "type": "Ellipse", "x": 1060, "y": 60, "w": 160, "h": 160, "color": "#e0a04a", "fill": false, "thickness": 4 },
+   { "type": "Label", "x": 40, "y": 380, "w": 760, "h": 120, "wrapW": 760, "fontSize": 22,
+     "runs": [ { "text": "流氷の" }, { "text": "軋", "ruby": "きし" }, { "text": "む音がする。" }, { "text": "霧走町", "ruby": "きりばしりちょう", "color": "#5ab0ff" }, { "text": "の冬は", "bold": true }, { "text": "長い。", "color": "#e0a04a" } ] },
+   { "type": "HorizontalLayout", "id": "enterRow", "x": 40, "y": 560, "w": 1200, "h": 60, "pad": 0, "gap": 12,
+     "children": [
+      { "type": "Button", "text": "fade", "action": "t:e1", "w": 180, "anim": { "enter": { "type": "fade", "durationMs": 400 }, "staggerMs": 120 } },
+      { "type": "Button", "text": "slide", "action": "t:e2", "w": 180, "anim": { "enter": { "type": "slide", "from": "left", "durationMs": 400 }, "staggerMs": 120 } },
+      { "type": "Button", "text": "pop", "action": "t:e3", "w": 180, "anim": { "enter": { "type": "pop", "durationMs": 400 }, "staggerMs": 120 } },
+      { "type": "Button", "text": "pulse", "action": "t:e4", "w": 180, "anim": { "pulse": { "scale": 1.1, "periodMs": 800 } } }
+     ] }
+  ]
+ }
+}

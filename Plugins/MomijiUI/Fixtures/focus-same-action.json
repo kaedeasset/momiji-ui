@@ -1,0 +1,143 @@
+{
+ "id": "focus-same-action",
+ "note": "同じ action を持つ 2 つの部品（id が違う）を方向キーで移れ、描き直し（bind）や一覧の並べ替えのあとも同じ鍵に焦点が残る（仕様 §7・R1）",
+ "bind": {
+  "strings": {},
+  "vars": {},
+  "lists": {
+   "rows": [
+    {
+     "id": "r1"
+    },
+    {
+     "id": "r2"
+    },
+    {
+     "id": "r3"
+    }
+   ]
+  }
+ },
+ "root": {
+  "type": "Panel",
+  "x": 0,
+  "y": 0,
+  "w": 1280,
+  "h": 720,
+  "variant": "spacer",
+  "children": [
+   {
+    "type": "VerticalLayout",
+    "x": 40,
+    "y": 40,
+    "w": 400,
+    "h": 300,
+    "pad": 0,
+    "gap": 10,
+    "children": [
+     {
+      "type": "Button",
+      "text": "保存（上）",
+      "action": "t:save",
+      "id": "saveTop",
+      "h": 40
+     },
+     {
+      "type": "Button",
+      "text": "保存（下）",
+      "action": "t:save",
+      "id": "saveBottom",
+      "h": 40
+     }
+    ]
+   },
+   {
+    "type": "VerticalLayout",
+    "x": 600,
+    "y": 40,
+    "w": 400,
+    "h": 400,
+    "pad": 0,
+    "gap": 8,
+    "repeat": "rows",
+    "template": {
+     "type": "Button",
+     "id": "row:{item.id}",
+     "text": "行 {item.id}",
+     "action": "t:row",
+     "h": 36
+    },
+    "children": []
+   }
+  ]
+ },
+ "scenarios": [
+  {
+   "name": "same-action",
+   "steps": [
+    {
+     "move": [
+      0,
+      1
+     ]
+    },
+    {
+     "bind": {
+      "vars": {
+       "tick": 1
+      }
+     }
+    },
+    {
+     "move": [
+      0,
+      -1
+     ]
+    }
+   ]
+  },
+  {
+   "name": "reorder",
+   "steps": [
+    {
+     "move": [
+      1,
+      0
+     ]
+    },
+    {
+     "move": [
+      0,
+      1
+     ]
+    },
+    {
+     "bind": {
+      "lists": {
+       "rows": [
+        {
+         "id": "r0"
+        },
+        {
+         "id": "r1"
+        },
+        {
+         "id": "r2"
+        },
+        {
+         "id": "r3"
+        }
+       ]
+      }
+     }
+    },
+    {
+     "move": [
+      0,
+      1
+     ]
+    }
+   ]
+  }
+ ]
+}

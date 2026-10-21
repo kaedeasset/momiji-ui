@@ -1,0 +1,79 @@
+{
+ "id": "grid",
+ "note": "GridLayout（cols・セル幅の等分・行高＝各行の最大・h 無しは 28）と、h 無しの GridLayout を縦に積んだときの高さ",
+ "root": {
+  "type": "Panel",
+  "x": 0,
+  "y": 0,
+  "w": 1280,
+  "h": 720,
+  "variant": "spacer",
+  "children": [
+   {
+    "type": "VerticalLayout",
+    "x": 40,
+    "y": 40,
+    "w": 700,
+    "h": 640,
+    "pad": 0,
+    "gap": 16,
+    "children": [
+     {
+      "type": "GridLayout",
+      "cols": 3,
+      "pad": 10,
+      "gap": 8,
+      "children": [
+       {
+        "type": "Button",
+        "text": "g1",
+        "action": "t:g1",
+        "h": 40
+       },
+       {
+        "type": "Button",
+        "text": "g2",
+        "action": "t:g2",
+        "h": 60
+       },
+       {
+        "type": "Button",
+        "text": "g3",
+        "action": "t:g3"
+       },
+       {
+        "type": "Button",
+        "text": "g4",
+        "action": "t:g4",
+        "h": 30,
+        "margin": 4
+       },
+       {
+        "type": "Button",
+        "text": "g5",
+        "action": "t:g5"
+       },
+       {
+        "type": "Button",
+        "text": "g6",
+        "action": "t:g6",
+        "h": 50
+       },
+       {
+        "type": "Button",
+        "text": "g7",
+        "action": "t:g7"
+       }
+      ]
+     },
+     {
+      "type": "Button",
+      "text": "after",
+      "action": "t:after",
+      "h": 40
+     }
+    ]
+   }
+  ]
+ }
+}

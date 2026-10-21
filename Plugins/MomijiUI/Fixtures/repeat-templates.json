@@ -1,0 +1,138 @@
+{
+ "id": "repeat-templates",
+ "note": "repeat の template と、要素ごとに型を選ぶ templates + templateKey（F2）。{item.*} の補間（text・action・showIf）と {key} の補間",
+ "bind": {
+  "strings": {
+   "title": "見出し"
+  },
+  "vars": {},
+  "lists": {
+   "rows": [
+    {
+     "kind": "big",
+     "id": "r1"
+    },
+    {
+     "kind": "small",
+     "id": "r2"
+    },
+    {
+     "kind": "rule",
+     "id": "r3"
+    },
+    {
+     "kind": "small",
+     "id": "r4"
+    },
+    {
+     "kind": "none",
+     "id": "r5"
+    },
+    {
+     "kind": "big",
+     "id": "r6"
+    }
+   ],
+   "chips": [
+    {
+     "id": "c1",
+     "on": "1"
+    },
+    {
+     "id": "c2",
+     "on": "0"
+    },
+    {
+     "id": "c3",
+     "on": "1"
+    }
+   ]
+  }
+ },
+ "root": {
+  "type": "Panel",
+  "x": 0,
+  "y": 0,
+  "w": 1280,
+  "h": 720,
+  "variant": "spacer",
+  "children": [
+   {
+    "type": "VerticalLayout",
+    "x": 40,
+    "y": 40,
+    "w": 500,
+    "h": 600,
+    "pad": 8,
+    "gap": 6,
+    "children": [
+     {
+      "type": "Button",
+      "text": "{title}",
+      "action": "t:head",
+      "h": 30
+     },
+     {
+      "type": "VerticalLayout",
+      "id": "list",
+      "pad": 0,
+      "gap": 6,
+      "repeat": "rows",
+      "templateKey": "kind",
+      "template": {
+       "type": "Button",
+       "text": "既定 {item.id}",
+       "action": "t:def-{item.id}",
+       "h": 20
+      },
+      "templates": {
+       "big": {
+        "type": "Button",
+        "text": "大 {item.id}",
+        "action": "t:big-{item.id}",
+        "h": 50
+       },
+       "small": {
+        "type": "Button",
+        "text": "小 {item.id}",
+        "action": "t:small-{item.id}",
+        "h": 26
+       },
+       "rule": {
+        "type": "Image",
+        "w": 480,
+        "h": 2,
+        "color": "#ffffff40"
+       }
+      },
+      "children": []
+     },
+     {
+      "type": "Button",
+      "text": "tail",
+      "action": "t:tail",
+      "h": 30
+     }
+    ]
+   },
+   {
+    "type": "HorizontalLayout",
+    "x": 600,
+    "y": 40,
+    "w": 600,
+    "h": 40,
+    "pad": 0,
+    "gap": 8,
+    "repeat": "chips",
+    "template": {
+     "type": "Button",
+     "text": "{item.id}",
+     "action": "t:chip-{item.id}",
+     "w": 120,
+     "showIf": "{item.on}"
+    },
+    "children": []
+   }
+  ]
+ }
+}

@@ -1,0 +1,122 @@
+{
+ "id": "editor-scope",
+ "note": "文字欄の編集器は配置・当たりと同じ操作スコープとクリップを使う（仕様 §6「操作層」・Codex 10/04/01 F1/F2・AC01〜AC04・AC08・AC09）。Modal を開いたら背面の欄の編集は降りて打鍵も Enter も効かない・閉じたら下書きは残るが自動では再開しない・ScrollView で半分だけ見える欄は見える部分だけが編集器で、完全に隠れたら降りる・押せなくした欄・条件で消した欄も同じ。各手の expect が両実装の合格条件（ime-enter の手はブラウザの変換中 Enter。UE は Slate の IME なのでこの手では何もしない＝手の前後で変わらないことだけ見る）",
+ "bind": {
+  "vars": { "modal": 0, "front": 0, "fieldOn": 1, "showField": 1 }
+ },
+ "root": {
+  "type": "Panel", "x": 0, "y": 0, "w": 1280, "h": 720, "variant": "spacer",
+  "children": [
+   { "type": "TextInput", "id": "field", "bindVar": "field", "action": "t:save", "x": 40, "y": 40, "w": 300, "h": 48, "placeholder": "name",
+     "enabledIf": "fieldOn == 1", "showIf": "showField == 1" },
+   { "type": "Button", "id": "go", "text": "go", "action": "t:go", "x": 40, "y": 120, "w": 120, "h": 40 },
+   { "type": "ScrollView", "id": "list", "x": 40, "y": 200, "w": 400, "h": 100, "pad": 0, "gap": 10,
+     "children": [
+      { "type": "Label", "text": "filler", "h": 60 },
+      { "type": "TextInput", "id": "inlist", "bindVar": "inlist", "action": "t:savelist", "h": 48, "placeholder": "in list" },
+      { "type": "Label", "text": "filler", "h": 60 },
+      { "type": "Button", "id": "after", "text": "after", "action": "t:after", "h": 40 }
+     ] },
+   { "type": "Modal", "id": "dlg", "text": "確認", "w": 400, "h": 200, "pad": 16, "gap": 10, "showIf": "modal == 1",
+     "children": [
+      { "type": "Button", "id": "ok", "text": "ok", "action": "t:ok", "h": 40 },
+      { "type": "TextInput", "id": "dlgField", "bindVar": "dlgField", "action": "t:dlgsave", "h": 48, "placeholder": "in dialog" }
+     ] },
+   { "type": "Modal", "id": "wait", "text": "待て", "w": 400, "h": 120, "pad": 16, "gap": 10, "showIf": "modal == 2",
+     "children": [ { "type": "Label", "text": "処理中", "align": "left", "h": 28 } ] },
+   { "type": "Modal", "id": "front", "text": "front", "w": 300, "h": 120, "pad": 16, "gap": 10, "showIf": "front == 1",
+     "children": [ { "type": "Button", "id": "fok", "text": "fok", "action": "t:fok", "h": 40 } ] }
+  ]
+ },
+ "scenarios": [
+  { "name": "modal-over-field", "_note": "AC01 操作対象のある Modal（Tab はダイアログの中の欄へ行くので、背面へ戻れないことは no-target-modal で見る）・AC02 元の欄が残る",
+    "steps": [
+     { "click": [190, 64], "expect": { "active": "field" } },
+     { "type": "abc", "expect": { "inputs": { "field": "abc" } } },
+     { "bind": { "vars": { "modal": 1 } }, "expect": { "active": "", "top": 1, "focus": "id:ok" } },
+     { "type": "X", "expect": { "active": "", "inputs": { "field": "abc" } } },
+     { "enter": true, "expect": { "events": 0 } },
+     { "click": [190, 64], "expect": { "active": "", "events": 0 } },
+     { "bind": { "vars": { "modal": 0 } }, "expect": { "top": 0, "focus": "id:field", "active": "", "inputs": { "field": "abc" } } },
+     { "click": [190, 64], "expect": { "active": "field" } },
+     { "type": "d", "expect": { "inputs": { "field": "abcd" } } },
+     { "enter": true, "expect": { "events": 1 } }
+    ] },
+  { "name": "field-gone-while-modal", "_note": "AC02 閉じたとき元の欄が消えていた",
+    "steps": [
+     { "click": [190, 64], "expect": { "active": "field" } },
+     { "type": "abc" },
+     { "bind": { "vars": { "modal": 1 } }, "expect": { "active": "", "top": 1 } },
+     { "bind": { "vars": { "modal": 0, "showField": 0 } }, "expect": { "top": 0, "active": "", "focus": "id:go" } },
+     { "enter": true, "expect": { "events": 0 } },
+     { "type": "z", "expect": { "active": "", "inputs": { "inlist": "" } } }
+    ] },
+  { "name": "no-target-modal", "_note": "AC01 操作対象の無い Modal（Enter・Tab・背面の欄のクリックのどれでも背面を再編集できない）",
+    "steps": [
+     { "click": [190, 64], "expect": { "active": "field" } },
+     { "type": "abc" },
+     { "bind": { "vars": { "modal": 2 } }, "expect": { "active": "", "top": 1, "focus": "" } },
+     { "enter": true, "expect": { "events": 0 } },
+     { "tab": true, "expect": { "active": "" } },
+     { "click": [190, 64], "expect": { "active": "", "events": 0 } },
+     { "type": "q", "expect": { "inputs": { "field": "abc" } } },
+     { "bind": { "vars": { "modal": 0 } }, "expect": { "active": "", "focus": "id:field", "inputs": { "field": "abc" } } }
+    ] },
+  { "name": "scroll-clip", "_note": "AC03 半分だけ見える欄は見える部分だけ・AC04 完全に隠れたら降りる",
+    "steps": [
+     { "probe": [240, 285], "expect": { "under": "input:inlist" } },
+     { "probe": [240, 310], "expect": { "under": "canvas" } },
+     { "click": [240, 285], "expect": { "active": "inlist", "editor": { "x": 40, "y": 270, "w": 390, "h": 30 } } },
+     { "scroll": { "id": "list", "y": 138 }, "expect": { "active": "", "editor": null, "scroll": { "list": 138 } } },
+     { "type": "k", "expect": { "inputs": { "inlist": "" } } },
+     { "enter": true, "expect": { "events": 0 } },
+     { "scroll": { "id": "list", "y": 100 }, "expect": { "active": "", "scroll": { "list": 100 } } },
+     { "probe": [240, 190], "expect": { "under": "canvas" } },
+     { "probe": [240, 210], "expect": { "under": "input:inlist" } },
+     { "click": [240, 210], "expect": { "active": "inlist", "editor": { "x": 40, "y": 200, "w": 390, "h": 18 } } },
+     { "type": "ok", "expect": { "inputs": { "inlist": "ok" } } },
+     { "enter": true, "expect": { "events": 1 } }
+    ] },
+  { "name": "disabled-while-editing", "_note": "AC04 押せなくした欄",
+    "steps": [
+     { "click": [190, 64], "expect": { "active": "field" } },
+     { "type": "ab" },
+     { "bind": { "vars": { "fieldOn": 0 } }, "expect": { "active": "" } },
+     { "type": "c", "expect": { "inputs": { "field": "ab" } } },
+     { "enter": true, "expect": { "events": 0 } },
+     { "bind": { "vars": { "fieldOn": 1 } }, "expect": { "active": "", "inputs": { "field": "ab" } } }
+    ] },
+  { "name": "hidden-by-condition", "_note": "AC04 条件で消した欄",
+    "steps": [
+     { "click": [190, 64], "expect": { "active": "field" } },
+     { "type": "ab" },
+     { "bind": { "vars": { "showField": 0 } }, "expect": { "active": "" } },
+     { "type": "c" },
+     { "enter": true, "expect": { "events": 0 } },
+     { "bind": { "vars": { "showField": 1 } }, "expect": { "active": "", "inputs": { "field": "ab" } } }
+    ] },
+  { "name": "nested-modal-editor", "_note": "AC08 背面 Modal の欄を編集中に前面 Modal（兄弟）を開き、閉じる。最後は復帰先ごと消す",
+    "steps": [
+     { "bind": { "vars": { "modal": 1 } }, "expect": { "top": 1, "focus": "id:ok" } },
+     { "click": [640, 400], "expect": { "active": "dlgField" } },
+     { "type": "hi", "expect": { "inputs": { "dlgField": "hi" } } },
+     { "bind": { "vars": { "front": 1 } }, "expect": { "top": 2, "active": "", "focus": "id:fok" } },
+     { "type": "x", "expect": { "inputs": { "dlgField": "hi" } } },
+     { "enter": true, "expect": { "events": 0 } },
+     { "click": [640, 400], "expect": { "active": "", "events": 0 } },
+     { "bind": { "vars": { "front": 0 } }, "expect": { "top": 1, "focus": "id:ok", "active": "", "inputs": { "dlgField": "hi" } } },
+     { "click": [640, 400], "expect": { "active": "dlgField" } },
+     { "type": "!", "expect": { "inputs": { "dlgField": "hi!" } } },
+     { "enter": true, "expect": { "events": 1 } },
+     { "bind": { "vars": { "front": 1 } }, "expect": { "top": 2, "active": "" } },
+     { "bind": { "vars": { "front": 0, "modal": 0 } }, "expect": { "top": 0, "focus": "id:field", "active": "" } }
+    ] },
+  { "name": "ime-enter", "_note": "AC09 変換中の Enter は送らない・送信用の Enter は 1 件（ブラウザ）。UE は ime-enter の手で何もしない",
+    "steps": [
+     { "click": [190, 64], "expect": { "active": "field" } },
+     { "type": "ka", "expect": { "inputs": { "field": "ka" } } },
+     { "imeEnter": true, "expect": { "events": 0, "active": "field" } },
+     { "enter": true, "expect": { "events": 1 } }
+    ] }
+ ]
+}

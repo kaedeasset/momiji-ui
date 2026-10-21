@@ -1,0 +1,9 @@
+{
+  "name": "momiji-ui-tools",
+  "private": true,
+  "description": "momiji-ui の照合を複数のブラウザ（Chromium・Firefox・WebKit）で回すための開発用の依存。本体（Tools/momiji-ui/web/src/momiji-ui.mjs）は依存なし。",
+  "type": "module",
+  "devDependencies": {
+    "playwright": "^1.55.0"
+  }
+}

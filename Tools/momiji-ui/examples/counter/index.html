@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MomijiUI の見本</title>
+<!-- MomijiUI の利用者向け説明書（Docs/Guides/Manuals/momiji-ui-manual.md §3）の見本。node Tools/momiji-ui/examples/serve.mjs で開く。
+     配布物（Tools/momiji-ui/web/dist/examples/counter/）では momiji-ui.css と momiji-ui.mjs の場所だけが変わる（build.mjs が書き換える） -->
+<link rel="stylesheet" href="../momiji-ui.css">
+<style>
+  html, body { margin: 0; height: 100%; background: #000; overflow: hidden; font-family: "KaedeGothic", sans-serif; }
+</style>
+</head>
+<body>
+<div id="stage" class="momiji-ui-stage"><canvas id="screen"></canvas></div>
+<script type="module" src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{
+ "id": "modal-siblings",
+ "note": "同じ親に Modal が 2 つ同時に出る（仕様 §5.4・Codex 10/04/01 F4・AC07）。群の番号は描いた順の通し番号なので、後に描いた（画面で手前の）Modal だけが焦点・押下を受ける。手前を閉じれば後ろの Modal が最前面になる",
+ "bind": { "vars": { "back": 1, "front": 1 } },
+ "root": {
+  "type": "Panel", "x": 0, "y": 0, "w": 1280, "h": 720, "variant": "spacer",
+  "children": [
+   { "type": "Button", "id": "bg", "text": "bg", "action": "t:bg", "x": 40, "y": 40, "w": 120, "h": 40 },
+   { "type": "Modal", "id": "back", "text": "back", "w": 400, "h": 200, "pad": 16, "gap": 10, "showIf": "back == 1",
+     "children": [ { "type": "Button", "id": "backButton", "text": "back", "action": "t:back", "h": 40 } ] },
+   { "type": "Modal", "id": "front", "text": "front", "w": 300, "h": 120, "pad": 16, "gap": 10, "showIf": "front == 1",
+     "children": [ { "type": "Button", "id": "frontButton", "text": "front", "action": "t:front", "h": 40 } ] }
+  ]
+ },
+ "scenarios": [
+  { "name": "front-wins",
+    "steps": [
+     { "hit": [640, 328], "expect": { "top": 2, "focus": "id:frontButton", "hit": "id:front" } },
+     { "move": [0, 1], "expect": { "focus": "id:frontButton" } },
+     { "click": [640, 328], "expect": { "events": 0 } },
+     { "click": [640, 368], "expect": { "events": 1 } },
+     { "bind": { "vars": { "front": 0 } }, "expect": { "top": 1, "focus": "id:backButton" } },
+     { "click": [640, 328], "expect": { "events": 2 } },
+     { "bind": { "vars": { "back": 0 } }, "expect": { "top": 0, "focus": "id:bg" } }
+    ] }
+ ]
+}

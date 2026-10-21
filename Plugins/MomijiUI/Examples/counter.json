@@ -1,0 +1,42 @@
+{
+ "id": "counter",
+ "note": "「+1」はまだ押していない間だけ脈動する（anim.pulse の whileIf）。MomijiUI の導入ガイド（momiji-ui-guide.md の 1.4・1.5）の見本。押した回数・名前の一覧・条件で出る文。UE は SMomijiUICounterExample（-KaedeUiExample=counter）、ブラウザはブラウザ版の examples/counter（説明書の Web の見本も同じ）が同じ JSON を使う。host が渡す値: vars.count（数）・strings.title・lists.names（{kind: name|empty, text}）。action: count:add / count:reset / name:add",
+ "root": {
+  "type": "Panel", "x": 0, "y": 0, "w": 1280, "h": 720, "variant": "spacer",
+  "children": [
+   {
+    "type": "VerticalLayout", "anchor": "center", "w": 640, "h": 560, "pad": 24, "gap": 14, "variant": "dark",
+    "children": [
+     { "type": "Label", "text": "{title}", "h": 40, "fontSize": 22, "align": "center" },
+     { "type": "Label", "text": "押した回数: {count}", "h": 32, "fontSize": 18, "align": "center" },
+     {
+      "type": "HorizontalLayout", "h": 48, "pad": 0, "gap": 12,
+      "children": [
+       { "type": "Button", "text": "+1", "action": "count:add", "flex": 1, "fontSize": 16,
+         "anim": { "pulse": { "scale": 1.06, "periodMs": 900, "whileIf": "count == 0" } } },
+       { "type": "Button", "text": "リセット", "action": "count:reset", "flex": 1, "fontSize": 16, "variant": "ghost", "enabledIf": "count > 0" }
+      ]
+     },
+     { "type": "Label", "text": "5 回押した", "h": 24, "fontSize": 14, "align": "center", "textColor": "#e0a04a", "showIf": "count >= 5" },
+     { "type": "Label", "text": "名前を入れて Enter（か「追加」）で一覧に足す", "h": 22, "fontSize": 13, "font": "main", "textColor": "#9aa6b8" },
+     {
+      "type": "HorizontalLayout", "h": 44, "pad": 0, "gap": 10,
+      "children": [
+       { "type": "TextInput", "flex": 1, "h": 44, "bindVar": "name", "action": "name:add", "placeholder": "名前", "fontSize": 15, "maxLen": 20 },
+       { "type": "Button", "text": "追加", "action": "name:add", "w": 100, "fontSize": 15 }
+      ]
+     },
+     {
+      "type": "ScrollView", "id": "names", "flex": 1, "pad": 10, "gap": 6, "variant": "dark",
+      "repeat": "names", "templateKey": "kind",
+      "templates": {
+       "name":  { "type": "Label", "text": "・{item.text}", "fontSize": 15, "wrapW": 560 },
+       "empty": { "type": "Label", "text": "（まだ誰もいない）", "fontSize": 14, "wrapW": 560, "textColor": "#9aa6b8" }
+      },
+      "children": []
+     }
+    ]
+   }
+  ]
+ }
+}

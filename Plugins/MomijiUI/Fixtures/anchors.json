@@ -1,0 +1,50 @@
+{
+ "id": "anchors",
+ "note": "anchor（fill / top / bottom / left / right / center）",
+ "root": {
+  "type": "Panel",
+  "x": 0,
+  "y": 0,
+  "w": 1280,
+  "h": 720,
+  "variant": "spacer",
+  "children": [
+   {
+    "type": "Button",
+    "text": "top",
+    "action": "t:top",
+    "anchor": "top",
+    "h": 40
+   },
+   {
+    "type": "Button",
+    "text": "bottom",
+    "action": "t:bottom",
+    "anchor": "bottom",
+    "h": 50
+   },
+   {
+    "type": "Button",
+    "text": "left",
+    "action": "t:left",
+    "anchor": "left",
+    "w": 80
+   },
+   {
+    "type": "Button",
+    "text": "right",
+    "action": "t:right",
+    "anchor": "right",
+    "w": 90
+   },
+   {
+    "type": "Button",
+    "text": "center",
+    "action": "t:center",
+    "anchor": "center",
+    "w": 300,
+    "h": 120
+   }
+  ]
+ }
+}

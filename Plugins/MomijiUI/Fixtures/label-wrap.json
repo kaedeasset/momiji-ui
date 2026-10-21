@@ -1,0 +1,116 @@
+{
+ "id": "label-wrap",
+ "note": "折り返す Label（wrapW・h 無し）の高さが行数 × 行送りになる（F1）。lineH の上書き・fontSize ごとの行送り",
+ "root": {
+  "type": "Panel",
+  "x": 0,
+  "y": 0,
+  "w": 1280,
+  "h": 720,
+  "variant": "spacer",
+  "children": [
+   {
+    "type": "VerticalLayout",
+    "x": 40,
+    "y": 40,
+    "w": 600,
+    "h": 640,
+    "pad": 10,
+    "gap": 6,
+    "children": [
+     {
+      "type": "Label",
+      "text": "冬の北海道、オホーツク海に面した小さな漁師町。流氷が岸を埋める季節、漁協組合長が防波堤で死んでいるのが見つかった。所轄は事故として片付けようとしている。",
+      "align": "left",
+      "fontSize": 17,
+      "wrapW": 560
+     },
+     {
+      "type": "Button",
+      "text": "a1",
+      "action": "t:a1",
+      "h": 30
+     },
+     {
+      "type": "Label",
+      "text": "冬の北海道、オホーツク海に面した小さな漁師町。流氷が岸を埋める季節、漁協組合長が防波堤で死んでいるのが見つかった。所轄は事故として片付けようとしている。",
+      "align": "left",
+      "fontSize": 13,
+      "wrapW": 300
+     },
+     {
+      "type": "Button",
+      "text": "a2",
+      "action": "t:a2",
+      "h": 30
+     },
+     {
+      "type": "Label",
+      "text": "冬の北海道、オホーツク海に面した小さな漁師町。流氷が岸を埋める季節、漁協組合長が防波堤で死んでいるのが見つかった。所轄は事故として片付けようとしている。",
+      "align": "left",
+      "fontSize": 15,
+      "wrapW": 400,
+      "lineH": 34
+     },
+     {
+      "type": "Button",
+      "text": "a3",
+      "action": "t:a3",
+      "h": 30
+     },
+     {
+      "type": "Label",
+      "text": "短い一行",
+      "align": "left",
+      "fontSize": 17,
+      "wrapW": 560
+     },
+     {
+      "type": "Button",
+      "text": "a4",
+      "action": "t:a4",
+      "h": 30
+     }
+    ]
+   },
+   {
+    "type": "ScrollView",
+    "id": "sv",
+    "x": 680,
+    "y": 40,
+    "w": 560,
+    "h": 300,
+    "pad": 12,
+    "gap": 8,
+    "children": [
+     {
+      "type": "Label",
+      "text": "冬の北海道、オホーツク海に面した小さな漁師町。流氷が岸を埋める季節、漁協組合長が防波堤で死んでいるのが見つかった。所轄は事故として片付けようとしている。",
+      "align": "left",
+      "fontSize": 17,
+      "wrapW": 520
+     },
+     {
+      "type": "Button",
+      "text": "s1",
+      "action": "t:s1",
+      "h": 30
+     },
+     {
+      "type": "Label",
+      "text": "冬の北海道、オホーツク海に面した小さな漁師町。流氷が岸を埋める季節、漁協組合長が防波堤で死んでいるのが見つかった。所轄は事故として片付けようとしている。冬の北海道、オホーツク海に面した小さな漁師町。流氷が岸を埋める季節、漁協組合長が防波堤で死んでいるのが見つかった。所轄は事故として片付けようとしている。",
+      "align": "left",
+      "fontSize": 14,
+      "wrapW": 520
+     },
+     {
+      "type": "Button",
+      "text": "s2",
+      "action": "t:s2",
+      "h": 30
+     }
+    ]
+   }
+  ]
+ }
+}

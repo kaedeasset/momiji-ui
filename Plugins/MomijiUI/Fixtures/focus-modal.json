@@ -1,0 +1,193 @@
+{
+ "id": "focus-modal",
+ "note": "Modal を開くと焦点は中へ移り（背景の鍵は控える）、閉じると控えた鍵へ戻る。操作対象の無い Modal は焦点なし（最前面の群だけ上がる）。閉じたとき元の部品が消えていたら最前面の先頭へ（仕様 §7・R1）",
+ "bind": {
+  "vars": {
+   "modal": 0,
+   "hideB": 0
+  }
+ },
+ "root": {
+  "type": "Panel",
+  "x": 0,
+  "y": 0,
+  "w": 1280,
+  "h": 720,
+  "variant": "spacer",
+  "children": [
+   {
+    "type": "VerticalLayout",
+    "x": 40,
+    "y": 40,
+    "w": 300,
+    "h": 300,
+    "pad": 0,
+    "gap": 10,
+    "children": [
+     {
+      "type": "Button",
+      "text": "a",
+      "action": "t:a",
+      "id": "a",
+      "h": 40
+     },
+     {
+      "type": "Button",
+      "text": "b",
+      "action": "t:b",
+      "id": "b",
+      "h": 40,
+      "hideIf": "hideB == 1"
+     },
+     {
+      "type": "Button",
+      "text": "c",
+      "action": "t:c",
+      "id": "c",
+      "h": 40
+     }
+    ]
+   },
+   {
+    "type": "Modal",
+    "id": "dlg",
+    "text": "確認",
+    "w": 400,
+    "h": 240,
+    "pad": 16,
+    "gap": 10,
+    "showIf": "modal == 1",
+    "children": [
+     {
+      "type": "Button",
+      "text": "ok",
+      "action": "t:ok",
+      "id": "ok",
+      "h": 40
+     },
+     {
+      "type": "Button",
+      "text": "cancel",
+      "action": "t:cancel",
+      "id": "cancel",
+      "h": 40
+     }
+    ]
+   },
+   {
+    "type": "Modal",
+    "id": "wait",
+    "text": "お待ちください",
+    "w": 400,
+    "h": 160,
+    "pad": 16,
+    "gap": 10,
+    "showIf": "modal == 2",
+    "children": [
+     {
+      "type": "Label",
+      "text": "処理中",
+      "align": "left",
+      "h": 28
+     }
+    ]
+   }
+  ]
+ },
+ "scenarios": [
+  {
+   "name": "open-close",
+   "steps": [
+    {
+     "move": [
+      0,
+      1
+     ]
+    },
+    {
+     "bind": {
+      "vars": {
+       "modal": 1
+      }
+     }
+    },
+    {
+     "move": [
+      0,
+      1
+     ]
+    },
+    {
+     "bind": {
+      "vars": {
+       "modal": 0
+      }
+     }
+    }
+   ]
+  },
+  {
+   "name": "no-target",
+   "steps": [
+    {
+     "move": [
+      0,
+      1
+     ]
+    },
+    {
+     "bind": {
+      "vars": {
+       "modal": 2
+      }
+     }
+    },
+    {
+     "move": [
+      0,
+      1
+     ]
+    },
+    {
+     "hit": [
+      190,
+      100
+     ]
+    },
+    {
+     "bind": {
+      "vars": {
+       "modal": 0
+      }
+     }
+    }
+   ]
+  },
+  {
+   "name": "target-gone",
+   "steps": [
+    {
+     "move": [
+      0,
+      1
+     ]
+    },
+    {
+     "bind": {
+      "vars": {
+       "modal": 1
+      }
+     }
+    },
+    {
+     "bind": {
+      "vars": {
+       "modal": 0,
+       "hideB": 1
+      }
+     }
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,88 @@
+{
+ "id": "invalid",
+ "invalid": true,
+ "note": "わざと壊した画面。診断（validate）が UE とブラウザで同じ code と path を出すことを突き合わせる（描かない）",
+ "stray": 1,
+ "root": {
+  "type": "Panel",
+  "x": 0,
+  "y": 0,
+  "w": 1280,
+  "h": 720,
+  "variant": "spacer",
+  "children": [
+   {
+    "type": "GridLayot",
+    "cols": 2,
+    "children": []
+   },
+   {
+    "type": "Label",
+    "text": "a",
+    "id": "dup",
+    "fontSize": "17",
+    "textColor": "muted",
+    "align": "middle"
+   },
+   {
+    "type": "Button",
+    "text": "b",
+    "id": "dup",
+    "action": "t:b",
+    "enabled": 1,
+    "anchor": "centre",
+    "anim": {
+     "enter": {
+      "type": "zoom"
+     },
+     "bounce": 1
+    }
+   },
+   {
+    "type": "VerticalLayout",
+    "repeat": "rows",
+    "children": []
+   },
+   {
+    "type": "VerticalLayout",
+    "repeat": "rows",
+    "templateKey": "kind",
+    "template": {
+     "type": "Label",
+     "text": "{item.text}"
+    },
+    "children": []
+   },
+   {
+    "type": "Label",
+    "runs": [
+     {
+      "text": "x"
+     },
+     {
+      "ruby": "y"
+     }
+    ],
+    "fontsize": 12
+   },
+   {
+    "type": "Polyline",
+    "points": [
+     [
+      0,
+      0
+     ],
+     [
+      1
+     ],
+     "x"
+    ]
+   },
+   {
+    "type": "Image",
+    "fit": "fill",
+    "children": "no"
+   }
+  ]
+ }
+}

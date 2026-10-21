@@ -1,0 +1,30 @@
+{
+  "FileVersion": 3,
+  "Version": 1,
+  "VersionName": "0.1.0",
+  "FriendlyName": "MomijiUI",
+  "Description": "A declarative UI framework for Unreal Engine 5: screens are JSON (nodes, layout, bindings, focus), drawn by a Slate renderer that matches the browser renderer. Bundles BIZ UDP Gothic / Mincho and the conformance fixtures.",
+  "Category": "UI",
+  "CreatedBy": "kaedeasset",
+  "CreatedByURL": "https://kaedeasset.com/",
+  "DocsURL": "https://github.com/kaedeasset/momiji-ui#readme",
+  "MarketplaceURL": "",
+  "SupportURL": "https://github.com/kaedeasset/momiji-ui/issues",
+  "EngineVersion": "5.8.0",
+  "CanContainContent": false,
+  "IsBetaVersion": true,
+  "Installed": false,
+  "Plugins": [],
+  "Modules": [
+    {
+      "Name": "MomijiUICore",
+      "Type": "Runtime",
+      "LoadingPhase": "Default"
+    },
+    {
+      "Name": "MomijiUISlate",
+      "Type": "Runtime",
+      "LoadingPhase": "Default"
+    }
+  ]
+}

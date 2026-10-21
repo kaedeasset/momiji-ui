@@ -1,0 +1,96 @@
+{
+ "id": "conditions",
+ "note": "showIf / hideIf / 合成（&& || ! 括弧）/ enabledIf（押せないものは当たりに出ない）",
+ "bind": {
+  "strings": {},
+  "vars": {
+   "a": 1,
+   "b": 0,
+   "n": 3
+  },
+  "lists": {}
+ },
+ "root": {
+  "type": "Panel",
+  "x": 0,
+  "y": 0,
+  "w": 1280,
+  "h": 720,
+  "variant": "spacer",
+  "children": [
+   {
+    "type": "VerticalLayout",
+    "x": 40,
+    "y": 40,
+    "w": 400,
+    "h": 640,
+    "pad": 0,
+    "gap": 8,
+    "children": [
+     {
+      "type": "Button",
+      "text": "show-a",
+      "action": "t:show-a",
+      "h": 30,
+      "showIf": "a"
+     },
+     {
+      "type": "Button",
+      "text": "show-b",
+      "action": "t:show-b",
+      "h": 30,
+      "showIf": "b"
+     },
+     {
+      "type": "Button",
+      "text": "hide-b",
+      "action": "t:hide-b",
+      "h": 30,
+      "hideIf": "b"
+     },
+     {
+      "type": "Button",
+      "text": "and",
+      "action": "t:and",
+      "h": 30,
+      "showIf": "a && n >= 3"
+     },
+     {
+      "type": "Button",
+      "text": "or",
+      "action": "t:or",
+      "h": 30,
+      "showIf": "b || n == 2"
+     },
+     {
+      "type": "Button",
+      "text": "not",
+      "action": "t:not",
+      "h": 30,
+      "showIf": "!(b) && !(n < 3)"
+     },
+     {
+      "type": "Button",
+      "text": "disabled",
+      "action": "t:disabled",
+      "h": 30,
+      "enabledIf": "b == 1"
+     },
+     {
+      "type": "Button",
+      "text": "enabled",
+      "action": "t:enabled",
+      "h": 30,
+      "enabledIf": "n > 2"
+     },
+     {
+      "type": "Button",
+      "text": "last",
+      "action": "t:last",
+      "h": 30
+     }
+    ]
+   }
+  ]
+ }
+}

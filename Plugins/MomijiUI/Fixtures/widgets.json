@@ -1,0 +1,72 @@
+{
+ "id": "widgets",
+ "note": "Toggle（当たりの幅＝箱＋10＋字の幅）・ToggleGroup（横等分）・Slider（h 無しは 14）・TextInput",
+ "root": {
+  "type": "Panel",
+  "x": 0,
+  "y": 0,
+  "w": 1280,
+  "h": 720,
+  "variant": "spacer",
+  "children": [
+   {
+    "type": "VerticalLayout",
+    "x": 40,
+    "y": 40,
+    "w": 600,
+    "h": 640,
+    "pad": 0,
+    "gap": 14,
+    "children": [
+     {
+      "type": "Toggle",
+      "text": "効果音を鳴らす",
+      "action": "t:toggle",
+      "h": 28
+     },
+     {
+      "type": "Toggle",
+      "text": "短",
+      "action": "t:toggle2",
+      "h": 24,
+      "fontSize": 20
+     },
+     {
+      "type": "ToggleGroup",
+      "h": 36,
+      "selected": 1,
+      "children": [
+       {
+        "type": "Button",
+        "text": "小",
+        "action": "t:tg0"
+       },
+       {
+        "type": "Button",
+        "text": "中",
+        "action": "t:tg1"
+       },
+       {
+        "type": "Button",
+        "text": "大",
+        "action": "t:tg2"
+       }
+      ]
+     },
+     {
+      "type": "Slider",
+      "action": "t:slider",
+      "value": 0.4
+     },
+     {
+      "type": "TextInput",
+      "action": "t:input",
+      "h": 44,
+      "bindVar": "v",
+      "placeholder": "入力"
+     }
+    ]
+   }
+  ]
+ }
+}
